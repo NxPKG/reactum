@@ -1,0 +1,60 @@
+---
+---
+
+<footer class="main-footer">
+  <a href="/" class="logo image">
+    <img src="/img/logo-reactum.svg" width="546" height="80" alt="reactum" />
+  </a>
+  <a href="https://khulnasoft.com" class="byline">by khulnasoft.com</a>
+  <nav>
+    <a href="https://github.com/reactum">View the Repo</a>
+    <a href="https://bytes.dev">JavaScript Newsletter</a>
+    <a href="https://reactnewsletter.com">React Newsletter</a>
+    <a href="https://react.gg?s=reactum">Learn React</a>
+    <a href="https://query.gg">Learn React Query</a>
+  </nav>
+</footer>
+
+<style>
+  .main-footer {
+    width: 100%;
+    margin-top: 4rem;
+    padding: var(--body-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 0.5rem;
+    border: var(--border-dark);
+    font-size: var(--font-sm);
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+    text-align: center;
+  }
+
+  .logo {
+    width: 180px;
+  }
+
+  .byline {
+    margin-top: -0.5rem;
+    padding: 0.3em 0.5em;
+    display: inline-block;
+    border-radius: 0.3em;
+    background-color: var(--charcoal);
+  }
+
+  .byline:hover {
+    background-color: var(--yellow);
+    color: var(--charcoal);
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+</style>

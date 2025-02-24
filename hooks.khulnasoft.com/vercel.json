@@ -1,0 +1,127 @@
+{
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/stats/js/script.js",
+      "destination": "https://plausible.io/js/script.js"
+    },
+    {
+      "source": "/stats/api/event",
+      "destination": "https://plausible.io/api/event"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/useOnClickOutside",
+      "destination": "/useclickaway"
+    },
+    {
+      "source": "/useOnScreen",
+      "destination": "/useintersectionobserver"
+    },
+    {
+      "source": "/useWhyDidYouUpdate",
+      "destination": "/userenderinfo"
+    },
+    {
+      "source": "/useSize",
+      "destination": "/usemeasure"
+    },
+    {
+      "source": "/useDebounce",
+      "destination": "/usedebounce"
+    },
+    {
+      "source": "/useThrottle",
+      "destination": "/usethrottle"
+    },
+    {
+      "source": "/usePrevious",
+      "destination": "/useprevious"
+    },
+    {
+      "source": "/useEventListener",
+      "destination": "/useeventlistener"
+    },
+    {
+      "source": "/useLockBodyScroll",
+      "destination": "/uselockbodyscroll"
+    },
+    {
+      "source": "/useToggle",
+      "destination": "/usetoggle"
+    },
+    {
+      "source": "/useKeyPress",
+      "destination": "/usekeypress"
+    },
+    {
+      "source": "/useScript",
+      "destination": "/usescript"
+    },
+    {
+      "source": "/useMemoCompare",
+      "destination": "/"
+    },
+    {
+      "source": "/useMedia",
+      "destination": "/usemediaquery"
+    },
+    {
+      "source": "/useHistory",
+      "destination": "/usehistorystate"
+    },
+    {
+      "source": "/useWindowSize",
+      "destination": "/usewindowsize"
+    },
+    {
+      "source": "/useHover",
+      "destination": "/usehover"
+    },
+    {
+      "source": "/useLocalStorage",
+      "destination": "/uselocalstorage"
+    },
+    {
+      "source": "/useAnimation",
+      "destination": "/"
+    },
+    {
+      "source": "/useSpring",
+      "destination": "/"
+    },
+    {
+      "source": "/useAuth",
+      "destination": "/"
+    },
+    {
+      "source": "/useRequireAuth",
+      "destination": "/"
+    },
+    {
+      "source": "/useFirestoreQuery",
+      "destination": "/"
+    },
+    {
+      "source": "/useRouter",
+      "destination": "/"
+    },
+    {
+      "source": "/useMemo",
+      "destination": "/"
+    },
+    {
+      "source": "/useTheme",
+      "destination": "/"
+    },
+    {
+      "source": "/useDarkMode",
+      "destination": "/"
+    },
+    {
+      "source": "/useAsync",
+      "destination": "/"
+    }
+  ]
+}

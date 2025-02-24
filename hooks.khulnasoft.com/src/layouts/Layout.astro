@@ -1,0 +1,125 @@
+---
+import "../styles/globals.css";
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: URL;
+  url?: URL;
+}
+
+const {
+  title,
+  description,
+  ogImage = new URL("/meta/og.jpg", Astro.url),
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+
+const url =
+  pathname[pathname.length - 1] === "/"
+    ? new URL(pathname.slice(0, pathname.length - 1), Astro.site)
+    : new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="khulnasoft.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta content="@uidotdev" name="twitter:site" />
+    <meta content="@uidotdev" name="twitter:creator" />
+    <meta
+      content={description}
+      name="twitter:description"
+      property="og:description"
+    />
+    <meta content={url} property="og:url" />
+    <meta content={url} property="twitter:url" />
+    <meta content={title} name="twitter:title" property="og:title" />
+    <meta content={ogImage} property="og:image" />
+    <meta content={ogImage} name="twitter:image" />
+    <link rel="canonical" href={url} />
+    <link
+      rel="preload"
+      href="/fonts/outfit-v4-latin-regular.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/outfit-v4-latin-500.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/outfit-v4-latin-700.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/outfit-v4-latin-900.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/paytone-one-v16-latin-regular.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="preload"
+      href="/fonts/firacode-regular.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+
+    <script
+      defer
+      src="/stats/js/script.js"
+      data-api="/stats/api/event"
+      data-domain="hooks.khulnasoft.com"
+    ></script>
+
+    <script defer>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "186849069509023");
+      fbq("track", "PageView");
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

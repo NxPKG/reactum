@@ -1,0 +1,58 @@
+---
+name: usePreferredLanguage
+rank: 10
+tagline: Adapt to user language preferences dynamically with usePreferredLanguage.
+sandboxId: usepreferredlanguage-v3dcoh
+previewHeight: 300px
+relatedHooks:
+  - usetoggle
+---
+
+import CodePreview from "../../components/CodePreview.astro";
+import HookDescription from "../../components/HookDescription.astro";
+import StaticCodeContainer from "../../components/StaticCodeContainer.astro";
+
+<HookDescription name={frontmatter.name}>
+  The usePreferredLanguage hook automatically adapts to the preferred language
+  of the user. The hook reactively returns a string that represents the
+  preferred language of the user, as set in the browser settings.
+</HookDescription>
+
+<div class="reference">
+  ### Return Value
+
+  <div class="table-container">
+  | Name          | Type   | Description                                                                                                   |
+  | ------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+  | language | string | The hook returns a string that represents the preferred language of the user, as set in the browser settings. |
+  </div>
+</div>
+
+<CodePreview
+  sandboxId={frontmatter.sandboxId}
+  previewHeight={frontmatter.previewHeight}
+/>
+
+<StaticCodeContainer>
+
+```jsx
+import * as React from "react";
+import { usePreferredLanguage } from "reactum";
+
+export default function App() {
+  const language = usePreferredLanguage();
+
+  return (
+    <section>
+      <h1>usePreferredLanguage</h1>
+      <p>Change language here - chrome://settings/languages</p>
+      <h2>
+        The correct date format for <pre>{language}</pre> is{" "}
+        <time>{new Date(Date.now()).toLocaleDateString(language)}</time>
+      </h2>
+    </section>
+  );
+}
+```
+
+</StaticCodeContainer>

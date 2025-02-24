@@ -1,0 +1,89 @@
+---
+name: useGeolocation
+rank: 36
+tagline: Access and monitor a user's geolocation (after they give permission) with useGeolocation.
+sandboxId: usegeolocation-3f1d0f
+previewHeight: 900px
+relatedHooks:
+  - usemap
+  - useset
+---
+
+import CodePreview from "../../components/CodePreview.astro";
+import HookDescription from "../../components/HookDescription.astro";
+import StaticCodeContainer from "../../components/StaticCodeContainer.astro";
+
+<HookDescription name={frontmatter.name}>
+  The useGeolocation hook is useful for accessing and monitoring the user's
+  geolocation (after they give permission) in a React application. By utilizing
+  the hook, developers can easily retrieve the user's current position,
+  including latitude, longitude, altitude, accuracy, heading, speed, and
+  timestamp.
+</HookDescription>
+
+<div class="reference">
+  ### Parameters
+
+<div class="table-container">
+| Name    | Type   | Description |
+| ------- | ------ | ----------- |
+| options | object | This is an optional configuration object provided when calling `useGeolocation`. It is used when calling `navigator.geolocation.getCurrentPosition()` and `navigator.geolocation.watchPosition()`. Some of the attributes it accepts are `enableHighAccuracy`, `timeout`, and `maximumAge`. |
+</div>
+
+### Return Values
+
+The hook returns an object containing the following properties:
+
+  <div class="table-container">
+  | Name              | Type    | Description |
+  | ----------------- | ------- | ----------- |
+  | loading           | boolean | A boolean indicating if the geolocation data is currently being fetched. |
+  | accuracy          | number  | The accuracy of the latitude and longitude properties in meters. |
+  | altitude          | number  | The altitude in meters above the mean sea level. |
+  | altitudeAccuracy  | number  | The accuracy of altitude in meters. |
+  | heading           | number  | The direction in which the device is traveling. This value, specified in degrees, indicates how far off from heading true north the device is. |
+  | latitude          | number  | The latitude in decimal degrees. |
+  | longitude         | number  | The longitude in decimal degrees. |
+  | speed             | number  | The current ground speed of the device, specified in meters per second. |
+  | timestamp         | number  | The timestamp at which the geolocation data was retrieved. |
+  | error             | object  | An error object, if an error occurred while retrieving the geolocation data. |
+  </div>
+</div>
+
+<CodePreview
+  sandboxId={frontmatter.sandboxId}
+  previewHeight={frontmatter.previewHeight}
+/>
+
+<StaticCodeContainer>
+
+```jsx
+import * as React from "react";
+import { useGeolocation } from "reactum";
+import Demo from "./Demo";
+
+export default function App() {
+  return (
+    <section>
+      <h1>useGeolocation</h1>
+      <Location />
+    </section>
+  );
+}
+
+function Location() {
+  const state = useGeolocation();
+
+  if (state.loading) {
+    return <p>loading... (you may need to enable permissions)</p>;
+  }
+
+  if (state.error) {
+    return <p>Enable permissions to access your location data</p>;
+  }
+
+  return <Demo state={state} />;
+}
+```
+
+</StaticCodeContainer>

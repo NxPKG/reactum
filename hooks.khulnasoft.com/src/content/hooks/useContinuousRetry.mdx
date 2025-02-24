@@ -1,0 +1,76 @@
+---
+name: useContinuousRetry
+experimental: true
+rank: 12
+tagline: Automates retries of a callback function until it succeeds with useContinuousRetry
+sandboxId: usecontinuousretry-v0uf1n
+previewHeight: 380px
+relatedHooks:
+  - usesessionstorage
+---
+
+import CodePreview from "../../components/CodePreview.astro";
+import HookDescription from "../../components/HookDescription.astro";
+import StaticCodeContainer from "../../components/StaticCodeContainer.astro";
+
+<HookDescription name={frontmatter.name}>
+  The useContinuousRetry hook allows you to repeatedly call a specified callback
+  function at a defined interval until the callback returns a truthy value,
+  indicating a successful resolution. This hook is particularly handy when
+  dealing with asynchronous operations or API calls that may fail temporarily
+  and need to be retried automatically. It encapsulates the logic of retrying
+  and provides a clean interface to handle retry-related states, such as whether
+  the retry process has resolved or not.
+</HookDescription>
+
+<div class="reference">
+  ### Parameters
+
+  <div class="table-container">
+  | Name     | Type     | Description                                                                                                                                                  |
+  | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | callback | function | The callback function to be executed repeatedly until it returns a truthy value.                                                                             |
+  | interval | number   | (Optional) The interval in milliseconds at which the callback function is executed. Default value is 100 milliseconds.                                       |
+  | options  | object   | (Optional) An object containing a `maxRetries` property which tells `useContinuousRetry` the maximum amount of retry attempts it should make before stopping |
+  </div>
+
+  ### Return Value
+
+  <div class="table-container">
+  | Type    | Description                                                                                |
+  | ------- | ------------------------------------------------------------------------------------------ |
+  | boolean | `true` if the callback function has resolved (returned a truthy value), `false` otherwise. |
+  </div>
+</div>
+
+<CodePreview
+  sandboxId={frontmatter.sandboxId}
+  previewHeight={frontmatter.previewHeight}
+/>
+
+<StaticCodeContainer>
+
+```jsx
+import * as React from "react";
+import { useContinuousRetry } from "reactum";
+
+export default function App() {
+  const [count, setCount] = React.useState(0);
+  const hasResolved = useContinuousRetry(() => {
+    console.log("retrying");
+    return count > 10;
+  }, 1000);
+
+  return (
+    <section>
+      <h1>useContinuousRetry</h1>
+      <button className="primary" onClick={() => setCount(count + 1)}>
+        {count}
+      </button>
+      <pre>{JSON.stringify({ hasResolved, count }, null, 2)}</pre>
+    </section>
+  );
+}
+```
+
+</StaticCodeContainer>
