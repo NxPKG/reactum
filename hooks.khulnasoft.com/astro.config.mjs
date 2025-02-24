@@ -2,32 +2,36 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import customTheme from "./theme.json";
 import tailwind from "@astrojs/tailwind";
-
-// import vercel from "@astrojs/vercel/edge";
-
 import mdx from "@astrojs/mdx";
-
-// https://astro.build/config
 import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
+// Uncomment this if you're using Vercel
+// import vercel from "@astrojs/vercel/edge";
+
 export default defineConfig({
   site: "https://hooks.khulnasoft.com",
   trailingSlash: "never",
   integrations: [react(), tailwind(), mdx(), sitemap()],
   output: "static",
+  // Uncomment this for Vercel deployment
   // adapter: vercel(),
   markdown: {
     shikiConfig: {
-      // Choose from Shiki's built-in themes (or add your own)
-      // https://github.com/shikijs/shiki/blob/main/docs/themes.md
-      theme: customTheme,
-      // Add custom languages
-      // Note: Shiki has countless langs built-in, including .astro!
-      // https://github.com/shikijs/shiki/blob/main/docs/languages.md
+      theme: customTheme,  // Ensure this is the correct path to your theme file
       langs: [],
-      // Enable word wrap to prevent horizontal scrolling
       wrap: false
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.split('node_modules/')[1].split('/')[0];  // Splits dependencies into their own chunks
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,  // Increase chunk size warning limit to 1000 KB (default is 500 KB)
   }
 });
